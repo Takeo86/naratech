@@ -124,3 +124,5 @@ css
 
 
 .card .price{display:block;background:#111;color:var(--bg);font-weight:800;font-size:.88rem;padding:.5rem .75rem;text-align:center}
+
+.site-footer .credit{margin-top:.6rem;justify-content:center;font-weight:700}
