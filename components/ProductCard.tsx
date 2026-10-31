@@ -1,7 +1,7 @@
 import Link from "next/link";
 // Reads the price from the description: the bold text right after the heading "قیمت تقریبی"
 function priceOf(content?: string) {
-  const m = content?.match(/قیمت تقریبی[^\n]*\n+\s*\*\*(.+?)\*\*/s);
+  const m = content?.match(/قیمت تقریبی[^\n]*\n+\s*\*\*([\s\S]+?)\*\*/);
   return m?.[1].replace(/\s*\(.*?\)/g, "").trim();
 }
 export default function ProductCard({ a }: { a: any }) {
