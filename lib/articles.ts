@@ -28,3 +28,15 @@ export async function listCategories() {
   const { data } = await db().from("categories").select("name,slug").order("name");
   return data ?? [];
 }
+
+export async function listAllTitles() {
+  const { data } = await db().from("articles").select("slug,title").eq("status", "published").lte("published_at", new Date().toISOString()).order("title");
+  return data ?? [];
+}
+export async function getForCompare(slugs: string[]) {
+  if (!slugs.length) return [];
+  const { data } = await db().from("articles").select("id,title,slug,featured_image,content,specs,categories(name)")
+    .in("slug", slugs).eq("status", "published").lte("published_at", new Date().toISOString());
+  const rows = (data ?? []) as any[];
+  return slugs.map(s => rows.find(r => r.slug === s)).filter(Boolean) as any[];
+}

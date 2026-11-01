@@ -13,7 +13,7 @@ async function update(fd: FormData) {
   if (!title || !content || !SLUG.test(slug)) throw new Error("Invalid input");
   const img = String(fd.get("featured_image") ?? "").trim();
   const { error } = await s.from("articles").update({ title, slug, content, excerpt: String(fd.get("excerpt") ?? "").slice(0, 300),
-    category_id: await categoryId(s, String(fd.get("category") ?? "")), featured_image: okImg(img) ? img : null, updated_at: new Date().toISOString() }).eq("id", String(fd.get("id")));
+    category_id: await categoryId(s, String(fd.get("category") ?? "")), featured_image: okImg(img) ? img : null, specs: Object.fromEntries(["brand","ports","uplink","poe","mgmt","form"].map(k => [k, String(fd.get("spec_" + k) ?? "").trim().slice(0, 80)])), updated_at: new Date().toISOString() }).eq("id", String(fd.get("id")));
   if (error) throw new Error("Could not save");
   revalidatePath("/admin"); revalidatePath("/articles"); revalidatePath("/");
   redirect("/admin");
@@ -34,6 +34,10 @@ export default async function Edit({ params }: { params: Promise<{ id: string }>
         <label className="label">Excerpt<input name="excerpt" maxLength={300} defaultValue={a.excerpt ?? ""} className="field" dir="auto" /></label>
         <label className="label">Category<input name="category" defaultValue={a.categories?.name ?? ""} className="field" dir="auto" /></label>
         <ImageField imgs={imgs} current={a.featured_image} />
+        <fieldset className="mt-6"><legend className="label">Technical specs (used on the Compare page)</legend>
+          {([["brand","Brand"],["ports","Ports"],["uplink","Uplink"],["poe","PoE"],["mgmt","Management / OS"],["form","Form factor"]] as const).map(([k, l]) => (
+            <label key={k} className="label">{l}<input name={"spec_" + k} defaultValue={a.specs?.[k] ?? ""} className="field" dir="auto" /></label>))}
+        </fieldset>
         <label className="label">Description (Markdown, include the price)<textarea name="content" required rows={18} defaultValue={a.content} className="field" dir="auto" style={{ fontFamily: "ui-monospace,monospace" }} /></label>
         <button className="btn mt-5">Save changes</button>
       </form>

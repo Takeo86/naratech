@@ -12,6 +12,7 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
       <header className="wide article-hero">
         <Link href="/articles" className="outline-btn">→ همه مقالات</Link>
         <h1 className="title-xl">{a.title}</h1>
+        <div className="mt-4"><Link href={`/compare?p=${a.slug}`} className="outline-btn">مقایسهٔ فنی با محصولات دیگر</Link></div>
         {a.published_at && <time className="count mt-4">{new Date(a.published_at).toLocaleDateString("fa-IR")}</time>}
       </header>
       <article className="wrap wrap-read">
