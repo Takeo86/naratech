@@ -11,7 +11,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
       <body>
         <header className="site-header"><div className="wide">
           <Link href="/" className="brand">NaraTech</Link>
-          <nav className={nav.className}><Link href="/" className="nav-link">خانه</Link><Link href="/articles" className="nav-link">پاسخ به سوالات</Link></nav>
+          <nav className={nav.className}><Link href="/" className="nav-link">خانه</Link><Link href="/articles" className="nav-link">پاسخ به سوالات</Link><Link href="/about" className="nav-link">درباره ما</Link></nav>
         </div></header>
         {children}
         <footer className="site-footer"><div className="wide"><span>© {new Date().getFullYear()} NaraTech</span><span>#NaraTech</span></div><div className="wide credit">طراحی و ساخت وبلاگ توسط سجاد سمیعی</div></footer>
