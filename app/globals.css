@@ -141,3 +141,20 @@ a{color:inherit;text-decoration:none}
 .cmp thead th{vertical-align:bottom}
 .cmp img{width:100%;max-width:9rem;aspect-ratio:4/3;object-fit:contain;margin:0 auto .5rem;display:block}
 .cmp .same{color:var(--muted)}
+
+/* filters, cards, q&a, product page */
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:1rem 0}
+.filters .field{margin-top:0;width:auto;min-width:9rem;padding:.45rem .8rem}
+.filters .chk{display:flex;gap:.4rem;align-items:center;font-weight:700;font-size:.9rem}
+.card-link{display:block}
+.card .addcmp{display:block;text-align:center;border-top:2px solid #111;padding:.45rem;font-size:.82rem;font-weight:700;background:var(--surface);transition:.2s}
+.card .addcmp:hover{background:#111;color:var(--bg)}
+.qa{border-top:2px solid #111}.qa:last-of-type{border-bottom:2px solid #111}
+.qa summary{cursor:pointer;font-weight:900;font-size:1.15rem;padding:1.2rem .5rem;list-style:none;display:flex;justify-content:space-between;gap:1rem;line-height:1.6}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";font-family:var(--font-display),sans-serif;font-size:1.6rem;line-height:1}
+.qa[open] summary::after{content:"−"}
+.qa .paper{margin:0 .5rem 1.5rem}
+.price-box{display:inline-block;background:#111;color:var(--bg);font-weight:900;font-size:1.3rem;padding:.55rem 1.2rem;margin-top:1.25rem}
+.specs{min-width:0}.specs th,.specs td{text-align:start}
+.note{font-size:.82rem;color:var(--muted);margin-top:.5rem}

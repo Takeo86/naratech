@@ -1,5 +1,6 @@
 import "./globals.css";
 import Link from "next/link";
+import VisitCounter from "@/components/VisitCounter";
 import { Vazirmatn, Anton, Noto_Sans_Arabic } from "next/font/google";
 const body = Vazirmatn({ subsets: ["arabic", "latin"], display: "swap", variable: "--font-body" });
 const display = Anton({ weight: "400", subsets: ["latin"], display: "swap", variable: "--font-display" });
@@ -11,10 +12,10 @@ export default function Root({ children }: { children: React.ReactNode }) {
       <body>
         <header className="site-header"><div className="wide">
           <Link href="/" className="brand">NaraTech</Link>
-          <nav className={nav.className}><Link href="/" className="nav-link">خانه</Link><Link href="/articles" className="nav-link">پاسخ به سوالات</Link><Link href="/compare" className="nav-link">مقایسه فنی</Link><Link href="/about" className="nav-link">درباره ما</Link></nav>
+          <nav className={nav.className}><Link href="/" className="nav-link">خانه</Link><Link href="/articles" className="nav-link">محصولات</Link><Link href="/qa" className="nav-link">پاسخ به سوالات</Link><Link href="/compare" className="nav-link">مقایسه فنی</Link><Link href="/about" className="nav-link">درباره ما</Link></nav>
         </div></header>
         {children}
-        <footer className="site-footer"><div className="wide"><span>© {new Date().getFullYear()} NaraTech</span><span>#NaraTech</span></div><div className="wide credit">طراحی و ساخت وبلاگ توسط سجاد سمیعی</div></footer>
+        <footer className="site-footer"><div className="wide"><span>© {new Date().getFullYear()} NaraTech</span><VisitCounter /><span>#NaraTech</span></div><div className="wide credit">طراحی و ساخت وبلاگ توسط سجاد سمیعی</div></footer>
       </body>
     </html>
   );

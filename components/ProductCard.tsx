@@ -1,16 +1,15 @@
 import Link from "next/link";
-// Reads the price from the description: the bold text right after the heading "قیمت تقریبی"
-function priceOf(content?: string) {
-  const m = content?.match(/قیمت تقریبی[^\n]*\n+\s*\*\*([\s\S]+?)\*\*/);
-  return m?.[1].replace(/\s*\(.*?\)/g, "").trim();
-}
+import { priceOf } from "@/lib/price";
 export default function ProductCard({ a }: { a: any }) {
   const price = priceOf(a.content);
   return (
-    <Link href={`/articles/${a.slug}`} className="card">
-      {a.featured_image ? <img className="pic" src={a.featured_image} alt={a.title} loading="lazy" /> : <div className="pic ph" aria-hidden />}
-      <h2>{a.title}</h2>
-      {price && <span className="price">{price}</span>}
-    </Link>
+    <div className="card">
+      <Link href={`/articles/${a.slug}`} className="card-link">
+        {a.featured_image ? <img className="pic" src={a.featured_image} alt={a.title} loading="lazy" /> : <div className="pic ph" aria-hidden />}
+        <h2>{a.title}</h2>
+        {price && <span className="price">{price}</span>}
+      </Link>
+      {a.specs && <Link href={`/compare?p=${a.slug}`} className="addcmp">+ افزودن به مقایسه</Link>}
+    </div>
   );
 }
